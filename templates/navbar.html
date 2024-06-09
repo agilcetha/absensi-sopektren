@@ -1,0 +1,121 @@
+<!-- Sidebar Start -->
+<div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
+    data-sidebar-position="fixed" data-header-position="fixed">
+<aside class="left-sidebar">
+    <!-- Sidebar scroll-->
+    <div class="">
+      <div class="brand-logo d-flex align-items-center justify-content-between">
+        <a href="{% url 'beranda_admin' %}" class="text-nowrap logo-img">
+          <img src="{% static 'src/assets/images/logos/presdio.png' %}" width="210" alt="" />
+        </a>
+        <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
+          <i class="ti ti-x fs-8"></i>
+        </div>
+      </div>
+
+      <!-- Sidebar navigation-->
+      <nav class="sidebar-nav scroll-sidebar" data-simplebar="">
+        <ul id="sidebarnav">
+          {% for group in user.groups.all %}
+
+            {% if group.name == "administrator" %}
+           
+                <li class="nav-small-cap">
+                  <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+                  <span class="hide-menu">Admin | {{request.user.username|title}}</span>
+                </li>
+              
+            {% endif %}
+            {% if group.name == "peserta" %}
+            <li class="nav-small-cap">
+              <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+              <span class="hide-menu">{{request.user.username|title}}</span>
+            </li>
+            {% endif %}
+            {% endfor %}
+          
+            {% for group in user.groups.all %}
+
+            {% if group.name == "administrator" %}
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="{% url 'beranda_admin' %}" aria-expanded="false">
+                <span>
+                  <i class="ti ti-home"></i>
+                </span>
+                <span class="hide-menu">Beranda</span>
+              </a>
+          </li>
+            <li class="sidebar-item">
+                <a class="sidebar-link" href="{% url 'data_peserta' %}" aria-expanded="false">
+                  <span>
+                    <i class="ti ti-server"></i>
+                  </span>
+                  <span class="hide-menu">Data Peserta</span>
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a class="sidebar-link" href="{% url 'jadwal_absensi' %}" aria-expanded="false">
+                  <span>
+                    <i class="ti ti-calendar"></i>
+                  </span>
+                  <span class="hide-menu">Jadwal Absensi</span>
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a class="sidebar-link" href="{% url 'rekap_absen' %}" aria-expanded="false">
+                  <span>
+                    <i class="ti ti-receipt"></i>
+                  </span>
+                  <span class="hide-menu">Rekap Absen </span>
+                </a>
+            </li>
+            {% endif %}
+
+            {% if group.name == "peserta" %}
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="{% url 'beranda_peserta' %}" aria-expanded="false">
+                <span>
+                  <i class="ti ti-home"></i>
+                </span>
+                <span class="hide-menu">Beranda</span>
+              </a>
+          </li>
+            <li class="sidebar-item">
+                <a class="sidebar-link" href="{% url 'absensi' %}" aria-expanded="false">
+                  <span>
+                    <i class="ti ti-pencil"></i>
+                  </span>
+                  <span class="hide-menu">Absensi</span>
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a class="sidebar-link" href="{% url 'sertifikat' %}" aria-expanded="false">
+                  <span>
+                    <i class="ti ti-printer"></i>
+                  </span>
+                  <span class="hide-menu">Sertifikat</span>
+                </a>
+            </li>
+           
+            {% endif %}
+            {% endfor %}
+         
+          
+          
+          <li class="sidebar-item">
+            <a class="sidebar-link" href="{% url 'logoutPage' %}" aria-expanded="false">
+              <span>
+                <i class="ti ti-login"></i>
+              </span>
+              <span class="hide-menu">Logout</span>
+            </a>
+          </li>
+         
+      </nav>
+      <!-- End Sidebar navigation -->
+    </div>
+    <!-- End Sidebar scroll-->
+  </aside>
+  <div class="body-wrapper">
+    <div class="container-fluid">
+  <!--  Sidebar End -->

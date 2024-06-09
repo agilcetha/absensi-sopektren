@@ -1,0 +1,95 @@
+{% extends "base.html" %}
+
+{% load static %}
+{% block content %}
+
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <section class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1>Data Peserta</h1>
+        </div>
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item active">Data Peserta</li>
+          </ol>
+        </div>
+      </div>
+    </div><!-- /.container-fluid -->
+  </section>
+
+  <!-- Main content -->
+  <section class="content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-12">
+          <div class="card">
+            
+            <!-- /.card-header -->
+            <div class="card-body table-responsive">
+              <table id="example2" class="table table-bordered">
+              <div class="d-flex justify-content-end mb-3">
+              <a class="btn btn-primary " href="{% url 'tambah_peserta' %}">
+                <i class="far fa-plus-square mx-2">
+                </i>Tambah Peserta</a>
+              </div>
+                <thead class="table-dark">
+                <tr>
+                  <th>No</th>
+                  <th>Nama</th>
+                  <th>Nim</th>
+                  <th>Fakultas/prodi</th>
+                  <th>Status</th>
+                  <th>Aksi</th>
+                </tr>
+                </thead>
+                <tbody>
+                  {% for row in data %}
+                  <tr>
+                  <td scope="row">{{ forloop.counter }}</td>
+                  <td>{{row.nama_mahasiswa}}</td>
+                  <td>{{row.nomor_induk_mahasiswa}}</td>
+                  <td>{{row.prodi}}</td>
+                  <td>{{row.status_mahasiswa}}</td>
+                  <td>
+                    <a class="btn" href="{% url 'edit_peserta' row.id %}" style="background-color: rgb(248, 115, 26);">
+                      <i class="far fa-edit " ></i>Edit</a>
+                      <a class="btn btn-danger" href="{% url 'hapus_peserta' row.id %}">
+                        <i class="fas fa-trash-alt" ></i></a>
+                  </td>
+                  
+                </tr>
+                  {% empty %}
+                   <tr>
+                    <td colspan="7" align="center">Data kosong</td>
+                   </tr>
+                  {% endfor %}
+               
+                
+             
+                </tbody>
+                <tfoot>
+               
+                </tfoot>
+              </table>
+            </div>
+            <!-- /.card-body -->
+          </div>
+          
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+
+    <!-- Modal Konfirmasi Hapus -->
+   
+  
+  </section>
+  <!-- /.content -->
+</div>
+{% endblock content %}

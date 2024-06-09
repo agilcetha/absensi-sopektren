@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="content-wrapper">
+<div class="container-fluid">
+    <div class="row justify-content-md-center">
+        <div class="col-md-8 mt-3">
+            <div class="card card-body">
+                <p>Anda yakin ingin menghapus {{ editpeserta }}?</p>
+                <form action="" method="POST">
+                    {% csrf_token %}
+                    <br>
+                    <a href="{% url 'data_peserta' %}" class="btn btn-danger" role="button">Batal</a>
+                    <input type="submit" class="btn btn-primary" name="Konfirmasi">
+                </form>
+            </div>
+        </div>
+
+    </div>
+</div>
+</div>
+
+
+{% endblock content %}
