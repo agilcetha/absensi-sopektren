@@ -28,3 +28,9 @@ def loginPage(request):
 def logoutPage(request):
     logout(request)
     return redirect('loginPage')
+
+def registerPage(request):
+    context = {
+        'judul' : 'Halaman Register'
+    }
+    return render(request, 'register.html', context)

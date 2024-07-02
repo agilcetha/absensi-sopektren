@@ -9,7 +9,6 @@ urlpatterns = [
     path('tambah_peserta/', views.tambah_peserta, name='tambah_peserta'),
     path('edit_peserta/<str:pk>', views.edit_peserta, name='edit_peserta'),
     path('hapus_peserta/<str:pk>',views.hapus_peserta, name='hapus_peserta'),
-
-
+    path('data_fakultas/', views.data_fakultas, name='data_fakultas'),
 
 ]

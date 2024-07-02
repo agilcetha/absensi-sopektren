@@ -1,0 +1,163 @@
+{% extends "base.html" %} {% load static %} {% block content %}
+
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <section class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1>{{ judul }}</h1>
+        </div>
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item active">{{ judul }}</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+
+    <!-- /.container-fluid -->
+  </section>
+
+  <!-- Main content -->
+  <section class="content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-12">
+          <div class="card">
+            <!-- /.card-header -->
+            <div class="card-body table-responsive">
+              
+
+            <section class="fakultas-list">
+            <!-- Contoh Fakultas dan Prodi -->
+            <div class="fakultas">
+                <h2>Fakultas Teknik</h2>
+                <ul>
+                    <li>S1 Teknik Informatika</li>
+                    <li>S1 Teknik Elektro</li>
+                    <li>S1 Teknologi Informasi</li>
+                </ul>
+            </div>
+            <div class="fakultas">
+                <h2>Fakultas Agama Islam</h2>
+                <ul>
+                    <li>S1 Komunikasi dan Penyiaran Islam</li>
+                    <li>S1 Ilmu Alqur'an dan Tafsir</li>
+                    <li>S1 Pendidikan Agama Islam</li>
+                    <li>S1 Pendidikan Bahasa Arab</li>
+                    <li>S1 Hukum Keluarga (Ahwal Syakhshiyah)</li>
+                    <li>S1 Manajemen Pendidikan Islam</li>
+                    <li>S1 Pendidikan Guru Madrasah Ibtidaiyah</li>
+                    <li>S1 Ekonomi Syari'ah</li>
+                    <li>S1 Perbankan Syariah</li>
+
+
+                </ul>
+            </div>
+            <div class="fakultas">
+                <h2>Fakultas Kesehatan</h2>
+                <ul>
+                    <li>S1 Ilmu Keperawatan</li>
+                    <li>D3 Kebidanan</li>
+                    <li>Profesi Ners</li>
+                </ul>
+            </div>
+            <div class="fakultas">
+                <h2>Fakultas Sosial dan Humaniora</h2>
+                <ul>
+                    <li>S1 Ekonomi</li>
+                    <li>S1 Hukum</li>
+                    <li>S1 Pendidikan Matematika</li>
+                    <li>S1 Pendidikan Bahasa Inggris</li>
+
+                </ul>
+            </div>
+            <!-- Tambahkan lebih banyak fakultas dan prodi sesuai kebutuhan -->
+        </section>
+            </div>
+            <!-- /.card-body -->
+          </div>
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+    </div>
+
+    <!-- /.container-fluid -->
+
+    <!-- Modal Konfirmasi Hapus -->
+  </section>
+  <!-- /.content -->
+  
+    <style>
+        /* Reset dasar */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        header {
+            background: #333;
+            color: #fff;
+            padding: 1rem 0;
+        }
+
+
+        main {
+            padding: 2rem;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .intro {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .fakultas-list {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+
+        .fakultas {
+            background: #fff;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .fakultas h2 {
+            margin-bottom: 1rem;
+            color: #007BFF;
+        }
+
+        .fakultas ul {
+            list-style: none;
+        }
+
+        .fakultas ul li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #ccc;
+        }
+
+        .fakultas ul li:last-child {
+            border-bottom: none;
+        }
+
+       
+    </style>
+
+
+</div>
+{% endblock content %}
