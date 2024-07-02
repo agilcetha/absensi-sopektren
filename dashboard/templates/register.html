@@ -1,0 +1,85 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Presdio</title>
+        <link
+          rel="shortcut icon"
+          type="image/png"
+          href="{%  static 'src/assets/images/logos/favicon.png' %}"
+        />
+        <link
+          rel="stylesheet"
+          href="{%  static 'src/assets/css/styles.min.css' %}"
+        />
+      </head>
+</head>
+<body>
+    <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
+    data-sidebar-position="fixed" data-header-position="fixed">
+    <div
+      class="position-relative overflow-hidden radial-gradient min-vh-100 d-flex align-items-center justify-content-center">
+      <div class="d-flex align-items-center justify-content-center w-100">
+        <div class="row justify-content-center w-100">
+          <div class="col-md-8 col-lg-6 col-xxl-3">
+            <div class="card mb-0">
+              <div class="card-body">
+                <a href="{% static 'src/index.html' %}" class="text-nowrap logo-img text-center d-block py-3 w-100">
+                    <img
+                    src="{%  static 'src/assets/images/logos/presdio.png' %}"
+                    width="250"
+                    alt=""
+                  />
+                </a>
+                
+                <form>
+                  <div class="mb-3">
+                    <label for="exampleInputtext1" class="form-label">Nama</label>
+                    <input type="text" class="form-control" id="exampleInputtext1" aria-describedby="textHelp">
+                  </div>
+                  <div class="mb-3">
+                    <label for="exampleInputNim" class="form-label">Nim</label>
+                    <input type="text" class="form-control" id="exampleInputNim" aria-describedby="textlHelp">
+                  </div>
+                  <div class="mb-4">
+                    <label for="exampleInputJk" class="form-label">Jenis Kelamin</label>
+                    <input type="text" class="form-control" id="exampleInputJk">
+                  </div>
+                  <div class="mb-4">
+                    <label for="exampleInputAlamat" class="form-label">Alamat</label>
+                    <input type="text" class="form-control" id="exampleInputAlamat">
+                  </div>
+                  <div class="mb-4">
+                    <label for="exampleInputFakultas" class="form-label">Fakultas</label>
+                    <input type="text" class="form-control" id="exampleInputFakultas">
+                  </div>
+                  <div class="mb-4">
+                    <label for="exampleInputProdi" class="form-label">Prodi</label>
+                    <input type="text" class="form-control" id="exampleInputProdi">
+                  </div>
+                  <div class="mb-4">
+                    <label for="exampleInputPassword1" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="exampleInputPassword1">
+                  </div>
+                  <div class="mb-4">
+                    <label for="exampleInputKonfirmasiPassword1" class="form-label">Konfirmasi Password</label>
+                    <input type="password" class="form-control" id="exampleInputKonfirmasiPassword1">
+                  </div>
+                  <a href="{% static 'src/index.html' %}" class="btn btn-primary w-100 py-8 fs-4 mb-4 rounded-2">Daftar</a>
+                  <div class="d-flex align-items-center justify-content-center">
+                    <p class="fs-4 mb-0 fw-bold">Already have an Account?</p>
+                    <a class="text-primary fw-bold ms-2" href="{% url 'loginPage' %}">login</a>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
