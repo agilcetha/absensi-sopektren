@@ -38,7 +38,7 @@ def beranda_peserta(request):
 @login_required(login_url='loginPage')
 def absensi(request):
     context={
-        'judul':'halaman login'
+        'judul':'Halaman Absensi'
     }
     return render(request, 'absensi.html', context)
 

@@ -3,7 +3,7 @@
 <style>
   /* Warna latar belakang hover untuk link di sidebar */
   .main-sidebar .nav-link:hover {
-    background-color: #5D87FF !important; /* Biru */
+    background-color: #5d87ff !important; /* Biru */
     color: #fff !important;
   }
 
@@ -25,14 +25,18 @@
   }
 </style>
 
-
 <!-- Main Sidebar Container -->
-<aside class="main-sidebar sidebar-light-primary" style="border-right: 1px solid #dee2e6;">
+<aside
+  class="main-sidebar sidebar-light-primary"
+  style="border-right: 1px solid #dee2e6"
+>
   <!-- Brand Logo -->
   <div class="brand-logo d-flex align-items-center justify-content-between">
     <a href="{% static 'adminlte/index3.html' %}" class="brand-link">
-      <img src="{% static 'src/assets/images/logos/presdio.png' %}" alt="AdminLTE Logo" >
-      
+      <img
+        src="{% static 'src/assets/images/logos/presdio.png' %}"
+        alt="AdminLTE Logo"
+      />
     </a>
   </div>
 
@@ -41,43 +45,54 @@
     <!-- Sidebar user panel (optional) -->
     <div class="user-panel mt-3 pb-3 mb-3 d-flex">
       <div class="image">
-        <img src="{% static 'adminlte/dist/img/user2-160x160.jpg' %}" class="img-circle elevation-2" alt="User Image">
+        <img
+          src="{% static 'adminlte/dist/img/user2-160x160.jpg' %}"
+          class="img-circle elevation-2"
+          alt="User Image"
+        />
       </div>
       {% for group in user.groups.all %}
-        {% if group.name == "administrator" %}
-        <div class="info">
-          <a href="#" class="d-block">Admin | {{request.user.username|title}}</a>
-        </div>
-        {% endif %}
-        {% if group.name == "peserta" %}
-        <div class="info">
-          <a href="#" class="d-block">{{request.user.username|title}}</a>
-        </div>
-        {% endif %}
+       {% if group.name == "administrator" %}
+      <div class="info">
+        <a href="#" class="d-block">Admin | {{request.user.username|title}}</a>
+      </div>
+      
+      {% elif group.name == "peserta" %}
+      <div class="info">
+        <a href="#" class="d-block">{{request.user.username|title}}</a>
+      </div>
+      {% endif %} 
       {% endfor %}
     </div>
 
     <!-- Sidebar Menu -->
     <nav class="mt-2">
-      <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+      <ul
+        class="nav nav-pills nav-sidebar flex-column"
+        data-widget="treeview"
+        role="menu"
+        data-accordion="false"
+      >
         <!-- Add icons to the links using the .nav-icon class
              with font-awesome or any other icon font library -->
-             {% for group in user.groups.all %}
-             {% if group.name == "administrator" %}
+        {% for group in user.groups.all %} 
+          {% if group.name == "administrator"%}
         <li class="nav-item">
-          <a href="{% url 'beranda_admin' %}" class="nav-link {% if menu == 'beranda_admin' %}active{% endif %}" >
+          <a
+            href="{% url 'beranda_admin' %}"
+            class="nav-link {% if menu == 'beranda_admin' %}active{% endif %}"
+          >
             <i class="nav-icon fas fa-home"></i>
-            <p>
-              Beranda
-            </p>
+            <p>Beranda</p>
           </a>
         </li>
         <li class="nav-item">
-          <a href="{% url 'data_peserta' %}" class="nav-link {% if menu == 'data_peserta' %}active{% endif %}">
+          <a
+            href="{% url 'data_peserta' %}"
+            class="nav-link {% if menu == 'data_peserta' %}active{% endif %}"
+          >
             <i class="nav-icon fas fa-database"></i>
-            <p>
-              Data Peserta
-            </p>
+            <p>Data Peserta</p>
           </a>
         </li>
         <!-- <li class="nav-item">
@@ -89,53 +104,49 @@
           </a>
         </li> -->
         <li class="nav-item">
-          <a href="{% url 'jadwal_absensi' %}" class="nav-link {% if menu == 'jadwal_absensi' %}active{% endif %}">
+          <a
+            href="{% url 'jadwal_absensi' %}"
+            class="nav-link {% if menu == 'jadwal_absensi' %}active{% endif %}"
+          >
             <i class="nav-icon fas fa-calendar"></i>
-            <p>
-              Jadwal Absensi
-            </p>
+            <p>Jadwal Absensi</p>
           </a>
         </li>
         <li class="nav-item">
-          <a href="{% url 'rekap_absen' %}" class="nav-link {% if menu == 'rekap_absen' %}active{% endif %}">
+          <a
+            href="{% url 'rekap_absen' %}"
+            class="nav-link {% if menu == 'rekap_absen' %}active{% endif %}"
+          >
             <i class="nav-icon fas fa-book"></i>
-            <p>
-              Rekap Absen
-            </p>
+            <p>Rekap Absen</p>
           </a>
         </li>
-        {% endif %}
+        {% endif %} 
         {% if group.name == "peserta" %}
         <li class="nav-item">
           <a href="{% url 'beranda_peserta' %}" class="nav-link">
             <i class="nav-icon fas fa-home"></i>
-            <p>
-              Beranda Peserta
-            </p>
-          </a>
-        </li><li class="nav-item">
-          <a href="{% url 'absensi' %}" class="nav-link">
-            <i class="nav-icon fas fa-check-circle"></i>
-            <p>
-              Absensi
-            </p>
-          </a>
-        </li><li class="nav-item">
-          <a href="{% url 'sertifikat' %}" class="nav-link">
-            <i class="nav-icon fas fa-print"></i>
-            <p>
-              Sertifikat
-            </p>
+            <p>Beranda Peserta</p>
           </a>
         </li>
-        {% endif %}
+        <li class="nav-item">
+          <a href="{% url 'absensi' %}" class="nav-link">
+            <i class="nav-icon fas fa-check-circle"></i>
+            <p>Absensi</p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="{% url 'sertifikat' %}" class="nav-link">
+            <i class="nav-icon fas fa-print"></i>
+            <p>Sertifikat</p>
+          </a>
+        </li>
+        {% endif %} 
         {% endfor %}
         <li class="nav-item">
           <a href="{% url 'logoutPage' %}" class="nav-link">
-            <i class="nav-icon fas fa-arrow-left "></i>
-            <p>
-              Logout
-            </p>
+            <i class="nav-icon fas fa-arrow-left"></i>
+            <p>Logout</p>
           </a>
         </li>
       </ul>
@@ -144,5 +155,3 @@
   </div>
   <!-- /.sidebar -->
 </aside>
-<div class="body-wrapper">
- 

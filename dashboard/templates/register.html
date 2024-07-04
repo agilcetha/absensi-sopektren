@@ -35,40 +35,14 @@
                   />
                 </a>
                 
-                <form>
-                  <div class="mb-3">
-                    <label for="exampleInputtext1" class="form-label">Nama</label>
-                    <input type="text" class="form-control" id="exampleInputtext1" aria-describedby="textHelp">
-                  </div>
-                  <div class="mb-3">
-                    <label for="exampleInputNim" class="form-label">Nim</label>
-                    <input type="text" class="form-control" id="exampleInputNim" aria-describedby="textlHelp">
-                  </div>
+                <form action="" method="POST" enctype="multipart/form-data">
                   <div class="mb-4">
-                    <label for="exampleInputJk" class="form-label">Jenis Kelamin</label>
-                    <input type="text" class="form-control" id="exampleInputJk">
+                              {% csrf_token %}
+                              {{ form }}
                   </div>
-                  <div class="mb-4">
-                    <label for="exampleInputAlamat" class="form-label">Alamat</label>
-                    <input type="text" class="form-control" id="exampleInputAlamat">
-                  </div>
-                  <div class="mb-4">
-                    <label for="exampleInputFakultas" class="form-label">Fakultas</label>
-                    <input type="text" class="form-control" id="exampleInputFakultas">
-                  </div>
-                  <div class="mb-4">
-                    <label for="exampleInputProdi" class="form-label">Prodi</label>
-                    <input type="text" class="form-control" id="exampleInputProdi">
-                  </div>
-                  <div class="mb-4">
-                    <label for="exampleInputPassword1" class="form-label">Password</label>
-                    <input type="password" class="form-control" id="exampleInputPassword1">
-                  </div>
-                  <div class="mb-4">
-                    <label for="exampleInputKonfirmasiPassword1" class="form-label">Konfirmasi Password</label>
-                    <input type="password" class="form-control" id="exampleInputKonfirmasiPassword1">
-                  </div>
-                  <a href="{% static 'src/index.html' %}" class="btn btn-primary w-100 py-8 fs-4 mb-4 rounded-2">Daftar</a>
+                 <button class="btn btn-primary w-100 py-8 fs-4 mb-4 rounded-2" type="submit">
+                   <a>Daftar</a>
+                 </button>
                   <div class="d-flex align-items-center justify-content-center">
                     <p class="fs-4 mb-0 fw-bold">Already have an Account?</p>
                     <a class="text-primary fw-bold ms-2" href="{% url 'loginPage' %}">login</a>
