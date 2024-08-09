@@ -1,0 +1,98 @@
+{% extends "base.html" %} 
+{% load static %} 
+{% block content %}
+<div class="content-wrapper">
+  <section class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1>{{ judul }}</h1>
+        </div>
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item active">{{ judul }}</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <div class="col-12">
+    <div class="card card-primary card-outline card-outline-tabs">
+      
+      <div class="card-body">
+        <div class="tab-content" id="custom-tabs-four-tabContent">
+
+          <!-- tampilan pertama start -->
+          
+          
+            <div class="card-body table-responsive">
+                <div class="row">
+                    <div class="col-6">
+                        <dl class="row">
+                          <dt class="col-sm-4">Tanggal</dt>
+                          <dd class="col-sm-8">: {{ jadwal_absensi.tanggal }}</dd>
+                          
+                          <dt class="col-sm-4">Jumlah Peserta</dt>
+                          <dd class="col-sm-8">: {{ jumlah_peserta }}</dd>
+                        </dl>
+                    </div>
+                    
+                    <div class="col-6">
+                        <dl class="row">
+                          <dt class="col-sm-4">Jumlah Checkin</dt>
+                          <dd class="col-sm-8">: {{ jumlah_checkin }}</dd>
+          
+                          <dt class="col-sm-4">Jumlah Checkout</dt>
+                          <dd class="col-sm-8">: {{ jumlah_checkout }}</dd>
+                        </dl>
+                    </div>
+                </div>
+                
+              <table id="example2" class="table table-bordered">
+                <thead class="table-dark align-items-center" style="text-align: center;">
+                  <tr>
+                    <th>No</th>
+                    <th>Nama Mahasiswa</th>
+                    <th>Nim Mahasiswa</th>
+                    <th>Prodi</th>
+                    <th>Checkin</th>
+                    <th>Checkout</th>
+                    <th>Ket</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  
+                  {% for peserta, absen in peserta_absensi.items %}
+                  <tr>
+                    <td scope="row">{{ forloop.counter }}</td>
+                    <td>{{ peserta.nama_mahasiswa }}</td>
+                    <td>{{ peserta.nomor_induk_mahasiswa }}</td>
+                    <td>{{ peserta.prodi }}</td>
+                    <td>{{ absen.checkin }}</td>
+                    <td>{{ absen.checkout }}</td>
+                    <td></td>
+
+                    </tr>
+                    {% empty %}
+                    <tr>
+                      <td colspan="7" align="center">Data kosong</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+                <tfoot></tfoot>
+              </table>
+            </div>
+            
+          </div>
+          <!-- tampilan pertama end -->
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock content %}

@@ -1,0 +1,94 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<div class="content-wrapper">
+    <section class="content-header">
+        <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+            <h1>{{ judul }}</h1>
+            </div>
+            <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                <li class="breadcrumb-item active">{{ judul }}</li>
+            </ol>
+            </div>
+        </div>
+        </div>
+
+    </section>
+
+    <section class="content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-12">
+          <div class="card">
+              <div class="card-body table-responsive">
+                          <table id="example2" class="table table-bordered">
+                              
+                              <thead class="table-dark">
+                              <tr>
+                                  <th>No</th>
+                                  <th>Nama Kegiatan</th>
+                                  <th>Akademik</th>
+                                  <th>Tanggal</th>
+                                  <th>in mulai</th>
+                                  <th>in selesai</th>
+                                  <th>out mulai</th>
+                                  <th>out selesai</th>
+                                  <th>Aksi</th>
+          
+          
+                              </tr>
+                              </thead>
+                              <tbody>
+                              {% for row in jadwal %}
+                              <tr>
+                                  <td scope="row">{{ forloop.counter }}</td>
+                                  <td>{{row.nama_kegiatan}}</td>
+                                  <td>{{row.tahun_akademik}}</td>
+                                  <td>{{row.tanggal}}</td>
+                                  <td>{{row.checkin_mulai|time:"H:i" }}</td>
+                                  <td>{{row.checkin_selesai|time:"H:i"}}</td>
+                                  <td>{{row.checkout_mulai|time:"H:i"}}</td>
+                                  <td>{{row.checkout_selesai|time:"H:i"}}</td>
+          
+                                  <td>
+                                  <a
+                                      class="btn"
+                                      href=""
+                                      style="background-color: rgb(248, 115, 26)"
+                                  >
+                                      <i class="far fa-edit"></i>Edit</a
+                                  >
+                                  <a
+                                      class="btn btn-danger"
+                                      href="{% url 'hapus_jadwal' row.id %}"
+                                      onclick="return confirm('Apakah anda yakin ingin menghapus mahasiswa {{row.nama_kegiatan}} ini?')"
+                                  >
+                                      <i class="fas fa-trash-alt"></i>
+                                  </a>
+                                  <a href="{% url 'rekap_view' row.id %}" class="btn btn-primary">View</a>
+                                  </td>
+                                  
+                              </tr>
+                              {% empty %}
+                              <tr>
+                                  <td colspan="7" align="center">Data kosong</td>
+                              </tr>
+                              
+                              {% endfor %}
+                              
+                              </tbody>
+                              
+                              <tfoot></tfoot>
+                          </table>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    </section>
+</div>
+{% endblock content %}

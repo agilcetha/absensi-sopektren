@@ -1,0 +1,2 @@
+buat filter untuk upload file register menjadi jpg/png
+buat filter upload laporan berupa pdf/word
