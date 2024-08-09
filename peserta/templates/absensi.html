@@ -1,4 +1,6 @@
-{% extends "base.html" %} {% load static %} {% block content %}
+{% extends "base.html" %}
+
+{% block content %}
 <div class="content-wrapper">
   <section class="content-header">
     <div class="container-fluid">
@@ -20,203 +22,114 @@
       <div class="row">
         <div class="col-md-12">
           <div class="card card-primary">
-            <div class="card-header ">
-                <h5> Formulir Absensi</h5>
+            <div class="card-header">
+              <h5>Formulir Absensi</h5>
             </div>
             <div class="card-body">
-                <form>
-                  <div class="row">
-                    <div class="col-md-4">
-                      <div class="card">
-                        <div class="card-body">
-                          <h5 class="card-title text-bold">Hari Pertama</h5>
-                          <p class="card-text"></p>
-                          <div class="form-group">
-                            <label for="">Silahkan Pilih Daftar Hadir</label>
-                            <div class="form-check">
-                              <input
-                                class="form-check-input"
-                                type="radio"
-                                name="radio1"
-                                id="radio1"
-                              />
-                              <label class="form-check-label" for="radio1"
-                                >Hadir</label
-                              >
-                            </div>
-                            <div class="form-check">
-                              <input
-                                class="form-check-input"
-                                type="radio"
-                                name="radio1"
-                                id="radio2"
-                                checked
-                              />
-                              <label class="form-check-label" for="radio2"
-                                >Izin</label
-                              >
-                            </div>
-                            <div class="form-check">
-                              <input
-                                class="form-check-input"
-                                type="radio"
-                                name="radio1"
-                                id="radio3"
-                                checked
-                              />
-                              <label class="form-check-label" for="radio3"
-                                >Tidak Hadir</label
-                              >
-                            </div>
-                          </div>
-                          <div class="form-group">
-                            <label for="">Silahkan Unggah Laporan</label>
-                            <div class="custom-file">
-                              <input
-                                type="file"
-                                class="custom-file-input"
-                                id="customFile"
-                              />
-                              <label class="custom-file-label" for="customFile"
-                                >Choose file</label
-                              >
-                            </div>
-                            <p>Max. 2Mb</p>
-                          </div>
-                          <div class="mt-2">
-                            <a href="#" class="btn btn-primary">Submit</a>
-                          </div>
-                        </div>
+             
+                {% for x in jadwal %}
+                {% if x.tanggal == tanggal %}
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="card">
+                      <div class="card-title">
+                        <h5 class="text px-4"><b> Check-in {{ x.nama_kegiatan }}</b></h5>
                       </div>
-                    </div>
-                    <div class="col-md-4">
-                      <div class="card">
-                        <div class="card-body">
-                          <h5 class="card-title text-bold">Hari Kedua</h5>
-                          <p class="card-text"></p>
-                          <div class="form-group">
-                            <label for="">Silahkan Pilih Daftar Hadir</label>
-                            <div class="form-check">
-                              <input
-                                class="form-check-input"
-                                type="radio"
-                                name="radio2"
-                                id="radio4"
-                              />
-                              <label class="form-check-label" for="radio4"
-                                >Hadir</label
-                              >
+                      <div class="card-body">
+                         <form method="POST" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <div class="text-monospace">
+                              Tanggal : {{ x.tanggal }}
                             </div>
-                            <div class="form-check">
-                              <input
-                                class="form-check-input"
-                                type="radio"
-                                name="radio2"
-                                id="radio5"
-                                checked
-                              />
-                              <label class="form-check-label" for="radio5"
-                                >Izin</label
-                              >
+                            {% if x.is_checkin_valid %}
+                            <div class="text-monospace">
+                              Waktu checkin : {{ x.checkin_mulai }} - {{ x.checkin_selesai }}
                             </div>
-                            <div class="form-check">
-                              <input
-                                class="form-check-input"
-                                type="radio"
-                                name="radio2"
-                                id="radio6"
-                                checked
-                              />
-                              <label class="form-check-label" for="radio6"
-                                >Tidak Hadir</label
-                              >
+                            <!-- Form untuk pilihan hadir/izin/tidak hadir (Check-in) -->
+                            <input type="hidden" name="jadwal_id_checkin" value="{{ x.id }}">
+                          <input type="hidden" name="type_absen" value="checkin" />
+                            <div class="form-group">
+                              <label>Silahkan Pilih Daftar Hadir</label>
+                              <div class="form-check">
+                                <input class="form-check-input" type="radio" name="status_checkin" id="hadir_checkin" value="hadir">
+                                <label class="form-check-label" for="hadir_checkin">Hadir</label>
+                              </div>
+                              <div class="form-check">
+                                <input class="form-check-input" type="radio" name="status_checkin" id="izin_checkin" value="izin" checked>
+                                <label class="form-check-label" for="izin_checkin">Izin</label>
+                              </div>
+                              <div class="form-check">
+                                <input class="form-check-input" type="radio" name="status_checkin" id="tidak_hadir_checkin" value="tidak_hadir">
+                                <label class="form-check-label" for="tidak_hadir_checkin">Tidak Hadir</label>
+                              </div>
                             </div>
-                          </div>
-                          <div class="form-group">
-                            <label for="">Silahkan Unggah Laporan</label>
-                            <div class="custom-file">
-                              <input
-                                type="file"
-                                class="custom-file-input"
-                                id="customFile2"
-                              />
-                              <label class="custom-file-label" for="customFile2"
-                                >Choose file</label
-                              >
+                            <!-- Form untuk mengunggah laporan -->
+                            <div class="form-group">
+                              <label>Silahkan Unggah Laporan</label>
+                              <input type="file" class="form-control-file" id="laporan_checkin" name="laporan_checkin">
+                              <small class="form-text text-muted">Maksimum 2MB</small>
                             </div>
-                            <p>Max. 2Mb</p>
-                          </div>
-                          <div class="mt-2">
-                            <a href="#" class="btn btn-primary">Submit</a>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-md-4">
-                      <div class="card">
-                        <div class="card-body">
-                          <h5 class="card-title text-bold">Hari Ketiga</h5>
-                          <p class="card-text"></p>
-                          <div class="form-group">
-                            <label for="">Silahkan Pilih Daftar Hadir</label>
-                            <div class="form-check">
-                              <input
-                                class="form-check-input"
-                                type="radio"
-                                name="radio3"
-                                id="radio7"
-                              />
-                              <label class="form-check-label" for="radio4"
-                                >Hadir</label
-                              >
-                            </div>
-                            <div class="form-check">
-                              <input
-                                class="form-check-input"
-                                type="radio"
-                                name="radio3"
-                                id="radio8"
-                                checked
-                              />
-                              <label class="form-check-label" for="radio5"
-                                >Izin</label
-                              >
-                            </div>
-                            <div class="form-check">
-                              <input
-                                class="form-check-input"
-                                type="radio"
-                                name="radio3"
-                                id="radio9"
-                                checked
-                              />
-                              <label class="form-check-label" for="radio6"
-                                >Tidak Hadir</label
-                              >
-                            </div>
-                          </div>
-                          <div class="form-group">
-                            <label for="">Silahkan Unggah Laporan</label>
-                            <div class="custom-file">
-                              <input
-                                type="file"
-                                class="custom-file-input"
-                                id="customFile2"
-                              />
-                              <label class="custom-file-label" for="customFile2"
-                                >Choose file</label
-                              >
-                            </div>
-                            <p>Max. 2Mb</p>
-                          </div>
-                          <div class="mt-2">
-                            <a href="#" class="btn btn-primary">Submit</a>
-                          </div>
-                        </div>
+                            <button type="submit" class="btn btn-primary">Submit Check-in</button>
+                            {% else %}
+                            <p>Waktu checkin sudah berakhir.</p>
+                            {% endif %}
+                          </form>
                       </div>
                     </div>
                   </div>
-                </form>
+                  <div class="col-md-6">
+                    <div class="card">
+                      <div class="card-title">
+                        <h5 class="text px-4"><b>Check-out {{ x.nama_kegiatan }}</b></h5>
+                      </div>
+                      <div class="card-body">
+                        <form method="POST" enctype="multipart/form">
+                          {% csrf_token %}
+                          <div class="text-monospace">
+                            Tanggal : {{ x.tanggal }}
+                          </div>
+                          {% if x.is_checkout_valid %}
+                          <div class="text-monospace">
+                            Waktu checkout : {{ x.checkout_mulai }} - {{ x.checkout_selesai }}
+                          </div>
+                          <!-- Form untuk pilihan hadir/izin/tidak hadir (Check-out) -->
+                          <input type="hidden" name="jadwal_id_checkout" value="{{ x.id }}">
+                          <input type="hidden" name="type_absen" value="checkout" />
+                          <div class="form-group">
+                            <label>Silahkan Pilih Daftar Hadir</label>
+                            <div class="form-check">
+                              <input class="form-check-input" type="radio" name="status_checkout" id="hadir_checkout" value="hadir">
+                              <label class="form-check-label" for="hadir_checkout">Hadir</label>
+                            </div>
+                            <div class="form-check">
+                              <input class="form-check-input" type="radio" name="status_checkout" id="izin_checkout" value="izin" checked>
+                              <label class="form-check-label" for="izin_checkout">Izin</label>
+                            </div>
+                            <div class="form-check">
+                              <input class="form-check-input" type="radio" name="status_checkout" id="tidak_hadir_checkout" value="tidak_hadir">
+                              <label class="form-check-label" for="tidak_hadir_checkout">Tidak Hadir</label>
+                            </div>
+                          </div>
+                          <!-- Form untuk mengunggah laporan -->
+                          <div class="form-group">
+                            <label>Silahkan Unggah Laporan</label>
+                            <input type="file" class="form-control-file" id="laporan_checkout" name="laporan_checkout">
+                            <small class="form-text text-muted">Maksimum 2MB</small>
+                          </div>
+                          <button type="submit" class="btn btn-primary">Submit Check-out</button>
+                          {% else %}
+                          <p>Waktu checkout sudah berakhir.</p>
+                          {% endif %}
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                {% endif %}
+                {% endfor %}
+                {% if jadwal|length == 0 %}
+                <h2>Absensi Tidak tersedia</h2>
+                {% endif %}
             </div>
           </div>
         </div>
@@ -224,5 +137,4 @@
     </div>
   </section>
 </div>
-
-{% endblock content %}
+{% endblock %}

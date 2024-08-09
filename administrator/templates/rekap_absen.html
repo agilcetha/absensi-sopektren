@@ -1,4 +1,6 @@
-{% extends "base.html" %} {% load static %} {% block content %}
+{% extends "base.html" %} 
+{% load static %} 
+{% block content %}
 <div class="content-wrapper">
   <section class="content-header">
     <div class="container-fluid">
@@ -69,17 +71,20 @@
             role="tabpanel"
             aria-labelledby="custom-tabs-four-home-tab"
           >
+          
             <div class="card-body table-responsive">
                 <div class="row">
+                  
                     <div class="col-6">
                         <dl class="row">
                           <dt class="col-sm-4">Tanggal</dt>
-                          <dd class="col-sm-8">: 12/04/2024</dd>
+                          <dd class="col-sm-8">: {{ tanggal }}</dd>
                           
                           <dt class="col-sm-4">Jumlah Peserta</dt>
-                          <dd class="col-sm-8">: 1034</dd>
+                          <dd class="col-sm-8">: {{ jumlah_peserta }}</dd>
                         </dl>
                     </div>
+                    
                     <div class="col-6">
                         <dl class="row">
                           <dt class="col-sm-4">Jumlah Checkin</dt>
@@ -91,7 +96,7 @@
 
                     </div>
                 </div>
-
+                
               <table id="example2" class="table table-bordered">
                 <thead class="table-dark align-items-center" style="text-align: center;">
                   <tr>
@@ -122,6 +127,7 @@
                 <tfoot></tfoot>
               </table>
             </div>
+            
           </div>
           <!-- tampilan pertama end -->
 
@@ -168,11 +174,11 @@
                   </tr>
                 </thead>
                 <tbody>
-                  {% for row in data %}
+                  {% for x in rekap %}
                   <tr>
                     <td scope="row">{{ forloop.counter }}</td>
-                    <td>{{row.nama_mahasiswa}}</td>
-                    <td>{{row.nomor_induk_mahasiswa}}</td>
+                    <td>{{x.data_mahasiswa}}</td>
+                    <td>{{x.nomor_induk_mahasiswa}}</td>
                     <td>{{row.prodi}}</td>
                     <td>{{row.status_mahasiswa}}</td>
                   </tr>

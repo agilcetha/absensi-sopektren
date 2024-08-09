@@ -19,7 +19,7 @@ def ijinkan_pengguna(yang_diizinkan=[]):
             if group in yang_diizinkan:
                 return fungsi_awal(request, *args, **kwargs)
             else:
-                return HttpResponse('< h2 > <center > Anda Tidak Diijinkankan Ke Tampilan ini < /center > </h2 >')
+                return HttpResponse('<h2 > <center > Anda Tidak Diijinkankan Ke Tampilan ini < /center > </h2>')
         return perubahan_halaman
     return aturan
 

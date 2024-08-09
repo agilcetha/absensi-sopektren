@@ -2,6 +2,7 @@ from django import forms
 from django.forms import ModelForm
 from .models import Peserta, JadwalAbsensi
 from django.core.exceptions import ValidationError
+from django.conf import settings
 
 class FormPeserta(ModelForm):
     class Meta:
@@ -76,17 +77,46 @@ class FormBerandaPeserta(ModelForm):
 class FormJadwalAbsensi(ModelForm):
     class Meta:
         model = JadwalAbsensi
-        fields = ['tanggal', 'checkin_mulai', 'checkin_selesai',
+        fields = ['nama_kegiatan','tanggal', 'tahun_akademik', 'checkin_mulai', 'checkin_selesai',
                   'checkout_mulai', 'checkout_selesai']
         widgets = {
-            'tanggal': forms.DateInput(attrs={'class': 'form-control', 'type': 'date', 'placeholder': 'Tanggal'}),
-            'checkin_mulai': forms.TimeInput(attrs={'class': 'form-control', 'type': 'time', 'placeholder': 'HH:MM'}),
-            'checkin_selesai': forms.TimeInput(attrs={'class': 'form-control', 'type': 'time', 'placeholder': 'HH:MM'}),
-            'checkout_mulai': forms.TimeInput(attrs={'class': 'form-control', 'type': 'time', 'placeholder': 'HH:MM'}),
-            'checkout_selesai': forms.TimeInput(attrs={'class': 'form-control', 'type': 'time', 'placeholder': 'HH:MM'}),
+            'nama_kegiatan': forms.TextInput(attrs={'class': 'form-control'}),
+            'tanggal': forms.DateInput(attrs={
+                'class': 'form-control',
+                'type': 'date',
+                'placeholder': 'Tanggal',
+                'format': settings.DATE_FORMAT[0]
+            }),
+            'tahun_akademik': forms.TextInput(attrs={
+                'class': 'form-control',
+                'placeholder': 'yyyy/yyyy'
+            }),
+            'checkin_mulai': forms.TimeInput(attrs={
+                'class': 'form-control',
+                
+                'placeholder': '00:00',
+                'format': settings.TIME_FORMAT[0]
+            }),
+            'checkin_selesai': forms.TimeInput(attrs={
+                'class': 'form-control',
+                'placeholder': '00:00',
+                'format': settings.TIME_FORMAT[0]
+            }),
+            'checkout_mulai': forms.TimeInput(attrs={
+                'class': 'form-control',
+                'placeholder': '00:00',
+                'format': settings.TIME_FORMAT[0]
+            }),
+            'checkout_selesai': forms.TimeInput(attrs={
+                'class': 'form-control',
+                'placeholder': '00:00',
+                'format': settings.TIME_FORMAT[0]
+            }),
         }
         labels = {
+            'nama_kegiatan': 'Nama Kegiatan',
             'tanggal': 'Tanggal',
+            'tahun_akademik': 'Tahun Akademik',
             'checkin_mulai': 'Checkin Mulai',
             'checkin_selesai': 'Checkin Selesai',
             'checkout_mulai': 'Checkout Mulai',

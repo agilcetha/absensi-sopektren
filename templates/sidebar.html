@@ -59,7 +59,7 @@
       
       {% elif group.name == "peserta" %}
       <div class="info">
-        <a href="#" class="d-block">{{request.user.username|title}}</a>
+        <a href="#" class="d-block">{{request.user.peserta.nama_mahasiswa|title}}</a>
       </div>
       {% endif %} 
       {% endfor %}
@@ -103,14 +103,33 @@
             </p>
           </a>
         </li> -->
-        <li class="nav-item">
+        <li class="nav-item {% if menu == 'jadwal_absensi' %} menu-open {% endif %}">
           <a
-            href="{% url 'jadwal_absensi' %}"
-            class="nav-link {% if menu == 'jadwal_absensi' %}active{% endif %}"
+            href=""
+            class="nav-link "
           >
             <i class="nav-icon fas fa-calendar"></i>
-            <p>Jadwal Absensi</p>
+            <p>Absensi</p>
+            <i class="right fas fa-angle-left"></i>
           </a>
+          <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{% url 'jadwal_absensi' %}" class="nav-link {% if menu == 'jadwal_absensi' %}active{% endif %}">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Atur Jadwal</p>
+                </a>
+              </li>
+     
+            </ul>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{% url 'detail_jadwal' %}" class="nav-link {% if menu == 'detail_jadwal' %}active{% endif %}">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>detail Jadwal</p>
+                </a>
+              </li>
+     
+            </ul>
         </li>
         <li class="nav-item">
           <a
@@ -121,6 +140,7 @@
             <p>Rekap Absen</p>
           </a>
         </li>
+        
         {% endif %} 
         {% if group.name == "peserta" %}
         <li class="nav-item">

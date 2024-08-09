@@ -1,4 +1,6 @@
-{% extends "base.html" %} {% load static %} {% block content %}
+{% extends "base.html" %} 
+{% load static %} 
+{% block content %}
 <div class="content-wrapper">
   <section class="content-header">
     <div class="container-fluid">
@@ -30,33 +32,10 @@
               role="tab"
               aria-controls="custom-tabs-four-home"
               aria-selected="true"
-              >Hari Pertama</a
+              >Atur Jadwal</a
             >
           </li>
-          <li class="nav-item">
-            <a
-              class="nav-link"
-              id="custom-tabs-four-profile-tab"
-              data-toggle="pill"
-              href="#custom-tabs-four-profile"
-              role="tab"
-              aria-controls="custom-tabs-four-profile"
-              aria-selected="false"
-              >Hari Kedua</a
-            >
-          </li>
-          <li class="nav-item">
-            <a
-              class="nav-link"
-              id="custom-tabs-four-messages-tab"
-              data-toggle="pill"
-              href="#custom-tabs-four-messages"
-              role="tab"
-              aria-controls="custom-tabs-four-messages"
-              aria-selected="false"
-              >Hari Ketiga</a
-            >
-          </li>
+          
         </ul>
       </div>
       <div class="card-body">
@@ -71,24 +50,63 @@
             <div class="card-body table-responsive">
              
                
-                <form method="post">
-                        {% csrf_token %} 
+                <form method="POST">
+                         
+                 {% csrf_token %}
+            <div class="row">
+                <div class="col-md-12">
                     <div class="form-group">
-                        <label for="namaKegiatan">Nama Kegiatan</label>
-                        <input type="text" class="form-control" id="namaKegiatan" placeholder="Masukkan Nama Kegiatan">
+                        {{ form_jadwal.nama_kegiatan.label_tag }}
+                        {{ form_jadwal.nama_kegiatan }}
                     </div>
+                </div>
+                
+            </div>
+            <div class="row">
+                <div class="col-md-6">
                     <div class="form-group">
-                        <label for="waktuCheckin">Waktu Checkin</label>
-                        <input type="text" class="form-control datetimepicker-input" id="waktuCheckin" data-toggle="datetimepicker" data-target="#waktuCheckin" placeholder="Masukkan Waktu Checkin">
+                        {{ form_jadwal.tahun_akademik.label_tag }}
+                        {{ form_jadwal.tahun_akademik }}
                     </div>
+                </div>
+                <div class="col-md-6">
                     <div class="form-group">
-                        <label for="waktuCheckout">Waktu Checkout</label>
-                        <input type="text" class="form-control datetimepicker-input" id="waktuCheckout" data-toggle="datetimepicker" data-target="#waktuCheckout" placeholder="Masukkan Waktu Checkout">
+                        {{ form_jadwal.tanggal.label_tag }}
+                        {{ form_jadwal.tanggal }}
                     </div>
+                </div>
+                
+            </div>
+            <div class="row">
+              <div class="col-md-6">
                     <div class="form-group">
-                        <label for="tanggal">Tanggal</label>
-                        <input type="text" class="form-control datetimepicker-input" id="tanggal" data-toggle="datetimepicker" data-target="#tanggal" placeholder="Masukkan Tanggal">
+                        {{ form_jadwal.checkin_mulai.label_tag }}
+                        {{ form_jadwal.checkin_mulai }}
                     </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        {{ form_jadwal.checkin_selesai.label_tag }}
+                        {{ form_jadwal.checkin_selesai }}
+                    </div>
+                </div>
+               
+            </div>
+            <div class="row">
+               <div class="col-md-6">
+                    <div class="form-group">
+                        {{ form_jadwal.checkout_mulai.label_tag }}
+                        {{ form_jadwal.checkout_mulai }}
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        {{ form_jadwal.checkout_selesai.label_tag }}
+                        {{ form_jadwal.checkout_selesai }}
+                    </div>
+                </div>
+            </div>
+              
                     <button type="submit" class="btn btn-primary">Simpan</button>
                 </form>
     
@@ -96,16 +114,7 @@
           </div>
           <!-- tampilan pertama end -->
 
-          <!-- tampilan kedua  -->
-          <div
-            class="tab-pane fade"
-            id="custom-tabs-four-profile"
-            role="tabpanel"
-            aria-labelledby="custom-tabs-four-profile-tab"
-          >
-            <div class="card-body table-responsive"></div>
-          </div>
-          <!-- tampilan kedua end -->
+        
 
           <!-- tampilan ketiga -->
           <div

@@ -18,6 +18,26 @@
       </div>
     </div>
   </section>
+
+  <section class="content">
+    <div class="container-fluid">
+      <div class="card">
+        <div class="card-body">
+          {% if sertifikat_url %}
+            <h2>Selamat, kamu telah menyelesaikan OSPEKTREN</h2>
+            <p>Silahkan unduh sertifikat sebagai bukti keikut sertaanmu dalam kegiatan ini!</p>
+            <div class="justify-content-center">
+              <a href="{{ sertifikat_url }}" class="btn btn-primary"><i class="fas fa-download"> E-Sertifikat</i></a>
+            </div>
+          {% elif error %}
+            <h2>{{ error }}</h2>
+          {% else %}
+            <h2>Data tidak ditemukan</h2>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </section>
 </div>
 
 {% endblock content %}
