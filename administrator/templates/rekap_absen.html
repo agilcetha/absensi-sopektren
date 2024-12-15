@@ -1,7 +1,259 @@
-{% extends "base.html" %}
+{% extends "base.html" %} {% load static %} {% block content %}
+<div class="content-wrapper">
+  <section class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1>{{ judul }}</h1>
+        </div>
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item active">{{ judul }}</li>
+          </ol>
+        </div>
+      </div>
+    </div>
 
-{% load static %}
-{% block content %}
+  </section>
 
+  <div class="col-12">
+    <div class="card card-primary card-outline card-outline-tabs">
+      <div class="card-header p-0 border-bottom-0">
+        <ul class="nav nav-tabs" id="custom-tabs-four-tab" role="tablist">
+          <li class="nav-item">
+            <a
+              class="nav-link active"
+              id="custom-tabs-four-home-tab"
+              data-toggle="pill"
+              href="#custom-tabs-four-home"
+              role="tab"
+              aria-controls="custom-tabs-four-home"
+              aria-selected="true"
+              >Hari Pertama</a
+            >
+          </li>
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              id="custom-tabs-four-profile-tab"
+              data-toggle="pill"
+              href="#custom-tabs-four-profile"
+              role="tab"
+              aria-controls="custom-tabs-four-profile"
+              aria-selected="false"
+              >Hari Kedua</a
+            >
+          </li>
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              id="custom-tabs-four-messages-tab"
+              data-toggle="pill"
+              href="#custom-tabs-four-messages"
+              role="tab"
+              aria-controls="custom-tabs-four-messages"
+              aria-selected="false"
+              >Hari Ketiga</a
+            >
+          </li>
+        </ul>
+      </div>
+      <div class="card-body">
+        <div class="tab-content" id="custom-tabs-four-tabContent">
+
+          <!-- tampilan pertama start -->
+          <div
+            class="tab-pane fade show active"
+            id="custom-tabs-four-home"
+            role="tabpanel"
+            aria-labelledby="custom-tabs-four-home-tab"
+          >
+            <div class="card-body table-responsive">
+                <div class="row">
+                    <div class="col-6">
+                        <dl class="row">
+                          <dt class="col-sm-4">Tanggal</dt>
+                          <dd class="col-sm-8">: 12/04/2024</dd>
+                          
+                          <dt class="col-sm-4">Jumlah Peserta</dt>
+                          <dd class="col-sm-8">: 1034</dd>
+                        </dl>
+                    </div>
+                    <div class="col-6">
+                        <dl class="row">
+                          <dt class="col-sm-4">Jumlah Checkin</dt>
+                          <dd class="col-sm-8">: 298</dd>
+          
+                          <dt class="col-sm-4">Jumlah Checkout</dt>
+                          <dd class="col-sm-8">: 254</dd>
+                        </dl>
+
+                    </div>
+                </div>
+
+              <table id="example2" class="table table-bordered">
+                <thead class="table-dark align-items-center" style="text-align: center;">
+                  <tr>
+                    <th>No</th>
+                    <th>Nama Mahasiswa</th>
+                    <th>Nim Mahasiswa</th>
+                    <th>Prodi</th>
+                    <th>Checkin</th>
+                    <th>Checkout</th>
+                    <th>Ket</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for row in data %}
+                  <tr>
+                    <td scope="row">{{ forloop.counter }}</td>
+                    <td>{{row.nama_mahasiswa}}</td>
+                    <td>{{row.nomor_induk_mahasiswa}}</td>
+                    <td>{{row.prodi}}</td>
+                    <td>{{row.status_mahasiswa}}</td>
+                  </tr>
+                  {% empty %}
+                  <tr>
+                    <td colspan="7" align="center">Data kosong</td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+                <tfoot></tfoot>
+              </table>
+            </div>
+          </div>
+          <!-- tampilan pertama end -->
+
+          <!-- tampilan kedua  -->
+          <div
+            class="tab-pane fade"
+            id="custom-tabs-four-profile"
+            role="tabpanel"
+            aria-labelledby="custom-tabs-four-profile-tab"
+          >
+            <div class="card-body table-responsive">
+              <div class="row">
+                    <div class="col-6">
+                        <dl class="row">
+                          <dt class="col-sm-4">Tanggal</dt>
+                          <dd class="col-sm-8">: 12/04/2024</dd>
+                          
+                          <dt class="col-sm-4">Jumlah Peserta</dt>
+                          <dd class="col-sm-8">: 1034</dd>
+                        </dl>
+                    </div>
+                    <div class="col-6">
+                        <dl class="row">
+                          <dt class="col-sm-4">Jumlah Checkin</dt>
+                          <dd class="col-sm-8">: 298</dd>
+          
+                          <dt class="col-sm-4">Jumlah Checkout</dt>
+                          <dd class="col-sm-8">: 254</dd>
+                        </dl>
+
+                    </div>
+                </div>
+
+              <table id="example2" class="table table-bordered">
+                <thead class="table-dark align-items-center" style="text-align: center;">
+                  <tr>
+                    <th>No</th>
+                    <th>Nama Mahasiswa</th>
+                    <th>Nim Mahasiswa</th>
+                    <th>Prodi</th>
+                    <th>Checkin</th>
+                    <th>Checkout</th>
+                    <th>Ket</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for row in data %}
+                  <tr>
+                    <td scope="row">{{ forloop.counter }}</td>
+                    <td>{{row.nama_mahasiswa}}</td>
+                    <td>{{row.nomor_induk_mahasiswa}}</td>
+                    <td>{{row.prodi}}</td>
+                    <td>{{row.status_mahasiswa}}</td>
+                  </tr>
+                  {% empty %}
+                  <tr>
+                    <td colspan="7" align="center">Data kosong</td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+                <tfoot></tfoot>
+              </table>
+            </div>
+          </div>
+          <!-- tampilan kedua end -->
+
+          <!-- tampilan ketiga -->
+          <div
+            class="tab-pane fade"
+            id="custom-tabs-four-messages"
+            role="tabpanel"
+            aria-labelledby="custom-tabs-four-messages-tab"
+          >
+            <div class="card-body table-responsive">
+              <div class="row">
+                    <div class="col-6">
+                        <dl class="row">
+                          <dt class="col-sm-4">Tanggal</dt>
+                          <dd class="col-sm-8">: 12/04/2024</dd>
+                          
+                          <dt class="col-sm-4">Jumlah Peserta</dt>
+                          <dd class="col-sm-8">: 1034</dd>
+                        </dl>
+                    </div>
+                    <div class="col-6">
+                        <dl class="row">
+                          <dt class="col-sm-4">Jumlah Checkin</dt>
+                          <dd class="col-sm-8">: 298</dd>
+          
+                          <dt class="col-sm-4">Jumlah Checkout</dt>
+                          <dd class="col-sm-8">: 254</dd>
+                        </dl>
+
+                    </div>
+                </div>
+
+              <table id="example2" class="table table-bordered">
+                <thead class="table-dark align-items-center" style="text-align: center;">
+                  <tr>
+                    <th>No</th>
+                    <th>Nama Mahasiswa</th>
+                    <th>Nim Mahasiswa</th>
+                    <th>Prodi</th>
+                    <th>Checkin</th>
+                    <th>Checkout</th>
+                    <th>Ket</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for row in data %}
+                  <tr>
+                    <td scope="row">{{ forloop.counter }}</td>
+                    <td>{{row.nama_mahasiswa}}</td>
+                    <td>{{row.nomor_induk_mahasiswa}}</td>
+                    <td>{{row.prodi}}</td>
+                    <td>{{row.status_mahasiswa}}</td>
+                  </tr>
+                  {% empty %}
+                  <tr>
+                    <td colspan="7" align="center">Data kosong</td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+                <tfoot></tfoot>
+              </table>
+            </div>
+          </div>
+          <!-- tampilan ketiga end -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
 {% endblock content %}

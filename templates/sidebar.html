@@ -3,7 +3,7 @@
 <style>
   /* Warna latar belakang hover untuk link di sidebar */
   .main-sidebar .nav-link:hover {
-    background-color: #5D87FF !important; /* Biru */
+    background-color: #5d87ff !important; /* Biru */
     color: #fff !important;
   }
 
@@ -25,73 +25,19 @@
   }
 </style>
 
-<div class="preloader flex-column justify-content-center align-items-center">
-  <img class="animation__shake" src="{% static 'src/assets/images/logos/presdio-loading.png' %}" alt="AdminLTELogo" height="110" width="100">
-</div>
-
-<!-- Navbar -->
-<nav class="main-header navbar navbar-expand navbar-white navbar-light">
-  <!-- Left navbar links -->
-  <ul class="navbar-nav">
-    <li class="nav-item">
-      <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
-    </li>
-    <li class="nav-item d-none d-sm-inline-block">
-      <a href="{% static 'adminlte/index3.html' %}" class="nav-link">Home</a>
-    </li>
-    <li class="nav-item d-none d-sm-inline-block">
-      <a href="#" class="nav-link">Contact</a>
-    </li>
-  </ul>
-
-  <!-- Right navbar links -->
-  <ul class="navbar-nav ml-auto">
-    <!-- Navbar Search -->
-    <li class="nav-item">
-      <a class="nav-link" data-widget="navbar-search" href="#" role="button">
-        <i class="fas fa-search"></i>
-      </a>
-      <div class="navbar-search-block">
-        <form class="form-inline">
-          <div class="input-group input-group-sm">
-            <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
-            <div class="input-group-append">
-              <button class="btn btn-navbar" type="submit">
-                <i class="fas fa-search"></i>
-              </button>
-              <button class="btn btn-navbar" type="button" data-widget="navbar-search">
-                <i class="fas fa-times"></i>
-              </button>
-            </div>
-          </div>
-        </form>
-      </div>
-    </li>
-
-    <!-- Messages Dropdown Menu -->
-
-    <li class="nav-item">
-      <a class="nav-link" data-widget="fullscreen" href="#" role="button">
-        <i class="fas fa-expand-arrows-alt"></i>
-      </a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" data-widget="control-sidebar" data-controlsidebar-slide="true" href="#" role="button">
-        <i class="fas fa-th-large"></i>
-      </a>
-    </li>
-  </ul>
-</nav>
-<!-- /.navbar -->
-
 <!-- Main Sidebar Container -->
-<aside class="main-sidebar sidebar-light-primary" style="border-right: 1px solid #dee2e6;">
+<aside
+  class="main-sidebar sidebar-light-primary"
+  style="border-right: 1px solid #dee2e6"
+>
   <!-- Brand Logo -->
   <div class="brand-logo d-flex align-items-center justify-content-between">
-  <a href="{% static 'adminlte/index3.html' %}" class="brand-link">
-    <img src="{% static 'src/assets/images/logos/presdio.png' %}" alt="AdminLTE Logo" >
-    
-  </a>
+    <a href="{% static 'adminlte/index3.html' %}" class="brand-link">
+      <img
+        src="{% static 'src/assets/images/logos/presdio.png' %}"
+        alt="AdminLTE Logo"
+      />
+    </a>
   </div>
 
   <!-- Sidebar -->
@@ -99,93 +45,108 @@
     <!-- Sidebar user panel (optional) -->
     <div class="user-panel mt-3 pb-3 mb-3 d-flex">
       <div class="image">
-        <img src="{% static 'adminlte/dist/img/user2-160x160.jpg' %}" class="img-circle elevation-2" alt="User Image">
+        <img
+          src="{% static 'adminlte/dist/img/user2-160x160.jpg' %}"
+          class="img-circle elevation-2"
+          alt="User Image"
+        />
       </div>
       {% for group in user.groups.all %}
-        {% if group.name == "administrator" %}
+       {% if group.name == "administrator" %}
       <div class="info">
         <a href="#" class="d-block">Admin | {{request.user.username|title}}</a>
       </div>
-      {% endif %}
-        {% if group.name == "peserta" %}
-        <div class="info">
-          <a href="#" class="d-block">{{request.user.username|title}}</a>
-        </div>
-      {% endif %}
+      
+      {% elif group.name == "peserta" %}
+      <div class="info">
+        <a href="#" class="d-block">{{request.user.username|title}}</a>
+      </div>
+      {% endif %} 
       {% endfor %}
     </div>
 
     <!-- Sidebar Menu -->
     <nav class="mt-2">
-      <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+      <ul
+        class="nav nav-pills nav-sidebar flex-column"
+        data-widget="treeview"
+        role="menu"
+        data-accordion="false"
+      >
         <!-- Add icons to the links using the .nav-icon class
              with font-awesome or any other icon font library -->
-             {% for group in user.groups.all %}
-             {% if group.name == "administrator" %}
+        {% for group in user.groups.all %} 
+          {% if group.name == "administrator"%}
         <li class="nav-item">
-          <a href="{% url 'beranda_admin' %}" class="nav-link">
+          <a
+            href="{% url 'beranda_admin' %}"
+            class="nav-link {% if menu == 'beranda_admin' %}active{% endif %}"
+          >
             <i class="nav-icon fas fa-home"></i>
-            <p>
-              Beranda
-            </p>
+            <p>Beranda</p>
           </a>
         </li>
         <li class="nav-item">
-          <a href="{% url 'data_peserta' %}" class="nav-link">
+          <a
+            href="{% url 'data_peserta' %}"
+            class="nav-link {% if menu == 'data_peserta' %}active{% endif %}"
+          >
+            <i class="nav-icon fas fa-database"></i>
+            <p>Data Peserta</p>
+          </a>
+        </li>
+        <!-- <li class="nav-item">
+          <a href="{% url 'data_fakultas' %}" class="nav-link {% if menu == 'data_fakultas' %}active{% endif %}">
             <i class="nav-icon fas fa-database"></i>
             <p>
-              Data Peserta
+              Data Fakultas
             </p>
           </a>
-        </li>
+        </li> -->
         <li class="nav-item">
-          <a href="{% url 'jadwal_absensi' %}" class="nav-link">
+          <a
+            href="{% url 'jadwal_absensi' %}"
+            class="nav-link {% if menu == 'jadwal_absensi' %}active{% endif %}"
+          >
             <i class="nav-icon fas fa-calendar"></i>
-            <p>
-              Jadwal Absensi
-            </p>
+            <p>Jadwal Absensi</p>
           </a>
         </li>
         <li class="nav-item">
-          <a href="{% url 'rekap_absen' %}" class="nav-link">
+          <a
+            href="{% url 'rekap_absen' %}"
+            class="nav-link {% if menu == 'rekap_absen' %}active{% endif %}"
+          >
             <i class="nav-icon fas fa-book"></i>
-            <p>
-              Rekap Absen
-            </p>
+            <p>Rekap Absen</p>
           </a>
         </li>
-        {% endif %}
+        {% endif %} 
         {% if group.name == "peserta" %}
         <li class="nav-item">
           <a href="{% url 'beranda_peserta' %}" class="nav-link">
             <i class="nav-icon fas fa-home"></i>
-            <p>
-              Beranda Peserta
-            </p>
-          </a>
-        </li><li class="nav-item">
-          <a href="{% url 'absensi' %}" class="nav-link">
-            <i class="nav-icon fas fa-check-circle"></i>
-            <p>
-              Absensi
-            </p>
-          </a>
-        </li><li class="nav-item">
-          <a href="{% url 'sertifikat' %}" class="nav-link">
-            <i class="nav-icon fas fa-print"></i>
-            <p>
-              Sertifikat
-            </p>
+            <p>Beranda Peserta</p>
           </a>
         </li>
-        {% endif %}
+        <li class="nav-item">
+          <a href="{% url 'absensi' %}" class="nav-link">
+            <i class="nav-icon fas fa-check-circle"></i>
+            <p>Absensi</p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="{% url 'sertifikat' %}" class="nav-link">
+            <i class="nav-icon fas fa-print"></i>
+            <p>Sertifikat</p>
+          </a>
+        </li>
+        {% endif %} 
         {% endfor %}
         <li class="nav-item">
           <a href="{% url 'logoutPage' %}" class="nav-link">
-            <i class="nav-icon fas fa-arrow-left "></i>
-            <p>
-              Logout
-            </p>
+            <i class="nav-icon fas fa-arrow-left"></i>
+            <p>Logout</p>
           </a>
         </li>
       </ul>
@@ -194,5 +155,3 @@
   </div>
   <!-- /.sidebar -->
 </aside>
-<div class="body-wrapper">
-  <div class="container-fluid">
